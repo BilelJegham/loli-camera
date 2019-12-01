@@ -9,17 +9,20 @@ registerColor = (name, hslCondition) => {
 }
 
 window.onload = () => {
-    registerColor('red', (h, s, l) => 0 < h && h < 8 && s > 50 && l < 50);
-    registerColor('blue', (h, s, l) => h > 220 && h < 230 && s > 50 && l < 50);
+    //registerColor('red', (h, s, l) => 0 < h && h < 8 && s > 50 && l < 50);
+    registerColor('blue', (h, s, l) => h > 200 && h < 230 && s > 40 && l > 40);
+    registerColor('brown', (h, s, l) => h > 0 && h < 20 && s > 30 && l < 40);
     registerColor('green', (h, s, l) => h > 100 && h < 160 && s > 50 && l < 50);
     registerColor('yellow', (h, s, l) => 58 && h < 64 && s > 50 && l < 50 && l > 20);
     
-    var tracker = new window.tracking.ColorTracker(['red', 'blue', 'yellow', 'green']);
+    var tracker = new window.tracking.ColorTracker(['brown', 'blue', 'yellow', 'green']);
     tracker.setMinDimension(3);
     tracker.setMinGroupSize(3);
     window.tracking.track('#video', tracker, { camera: true });
     tracker.on('track', onTrack);
 }
+var state =0;
+var running =false;
 
 onTrack = (event) => {
     var canvas = document.getElementById('canvas');
@@ -42,7 +45,37 @@ onTrack = (event) => {
         return rest
     })
     console.log(trackedColors);
+    
+    if(!running){
+        if(state === 0){
+            var color = ["brown", "green"];
+            var i = 0;
+            trackedColors.forEach(element => {
+                if(element === color[i]){
+                    i++;
+                }
+                if(i === 2 ){
+                    running = true
+                    
+                    document.querySelector('#player').play();
+                    setTimeout(function(){
+                        document.querySelector('#player').pause();
+                        state = 1;
+            
+                        running = false
+                    },2000);
+                }
+            });
+        
+            
+            
 
+        }else if(state === 1){
+    
+
+        }
+
+    }
     // if (consecutiveColors == MIN_CONSECUTIVE_COLORS) {
     //    // onColorsChanged();
     //     //onColorsChangedUpdateSettings();
