@@ -11,9 +11,9 @@ registerColor = (name, hslCondition) => {
 window.onload = () => {
     //registerColor('red', (h, s, l) => 0 < h && h < 8 && s > 50 && l < 50);
     registerColor('blue', (h, s, l) => h > 200 && h < 230 && s > 40 && l > 40);
-    registerColor('brown', (h, s, l) => h > 0 && h < 20 && s > 30 && l < 40);
-    registerColor('green', (h, s, l) => h > 100 && h < 160 && s > 50 && l < 50);
-    registerColor('yellow', (h, s, l) => 58 && h < 64 && s > 50 && l < 50 && l > 20);
+    registerColor('brown', (h, s, l) => h > 300 && s < 20 && l < 30);
+    registerColor('green', (h, s, l) => h > 100 && h < 160 && l < 50);
+    registerColor('yellow', (h, s, l) => h > 38 && h < 64  && l < 50 && l > 20);
     
     var tracker = new window.tracking.ColorTracker(['brown', 'blue', 'yellow', 'green']);
     tracker.setMinDimension(3);
@@ -23,15 +23,7 @@ window.onload = () => {
 }
 var state =0;
 var running =false;
-window.onload = function(){
-document.querySelector('#player').play();
-setTimeout(function(){
-    document.querySelector('#player').src = "Composition 2.mp4"
-    state = 1;
 
-    running = false
-},5000);
-}
 onTrack = (event) => {
     var canvas = document.getElementById('canvas');
     var camera = document.getElementById('camera');
