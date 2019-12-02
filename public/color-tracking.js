@@ -23,7 +23,15 @@ window.onload = () => {
 }
 var state =0;
 var running =false;
+window.onload = function(){
+document.querySelector('#player').play();
+setTimeout(function(){
+    document.querySelector('#player').src = "Composition 2.mp4"
+    state = 1;
 
+    running = false
+},5000);
+}
 onTrack = (event) => {
     var canvas = document.getElementById('canvas');
     var camera = document.getElementById('camera');
@@ -48,7 +56,7 @@ onTrack = (event) => {
     
     if(!running){
         if(state === 0){
-            var color = ["brown", "green"];
+            var color = ["blue", "green", "yellow"];
             var i = 0;
             trackedColors.forEach(element => {
                 if(element === color[i]){
@@ -59,11 +67,11 @@ onTrack = (event) => {
                     
                     document.querySelector('#player').play();
                     setTimeout(function(){
-                        document.querySelector('#player').pause();
+                        document.querySelector('#player').src = "Composition 2.mp4"
                         state = 1;
             
                         running = false
-                    },2000);
+                    },5000);
                 }
             });
         
@@ -71,6 +79,66 @@ onTrack = (event) => {
             
 
         }else if(state === 1){
+            var color = ["brown", "green", "blue"];
+            trackedColors.forEach(element => {
+                if(element === color[i]){
+                    i++;
+                }
+                if(i === 2 ){
+                    running = true
+                    
+                    document.querySelector('#player').play();
+                    setTimeout(function(){
+                        document.querySelector('#player').src = "Composition 3.mp4"
+                        state = 2;
+            
+                        running = false
+                    },5000);
+                }
+            });
+        
+    
+
+        }else if(state === 2){
+            var color = ["blue", "green","brown", "yellow"];
+            trackedColors.forEach(element => {
+                if(element === color[i]){
+                    i++;
+                }
+                if(i === 3 ){
+                    running = true
+                    
+                    document.querySelector('#player').play();
+                    setTimeout(function(){
+                        document.querySelector('#player').src = "Composition 4.mp4"
+                        state = 2;
+            
+                        running = false
+                    },5000);
+                }
+            });
+        
+    
+
+        }else if(state === 3){
+            var color = [ "green","brown","yellow", "blue"];
+            trackedColors.forEach(element => {
+                if(element === color[i]){
+                    i++;
+                }
+                if(i === 3 ){
+                    running = true
+                    
+                    document.querySelector('#player').play();
+                    setTimeout(function(){
+                        document.querySelector('#player').src = "Composition 1.mp4"
+                        state = 1;
+            
+                        running = false
+                    },5000);
+                }
+            });
+        
     
 
         }
