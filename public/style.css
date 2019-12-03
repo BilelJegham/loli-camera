@@ -1,0 +1,12 @@
+body{
+	margin:0;
+	background: black;
+	overflow: hidden;
+}
+
+#video{
+	position: absolute;
+	right:0;
+	
+    transform: rotateY(180deg);
+}
